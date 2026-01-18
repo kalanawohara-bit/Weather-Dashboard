@@ -41,3 +41,11 @@ header h1 {
     border: 1px solid #ccc;
     outline: none;
 }
+.search-box button {
+    padding: 10px 20px;
+    border: none;
+    background: #2193b0;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+}
