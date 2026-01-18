@@ -81,3 +81,27 @@ header h1 {
     margin-bottom: 15px;
     text-align: center;
 }
+
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.forecast-card {
+    background: #2193b0;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.forecast-card h4 {
+    margin-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+}
