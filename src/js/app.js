@@ -1,5 +1,6 @@
 const API_KEY = "ae331bd76f901600655e60a876af5eab";
 
+// DOM Elements
 const searchBtn = document.getElementById("searchBtn");
 const cityInput = document.getElementById("cityInput");
 
@@ -9,39 +10,64 @@ const description = document.getElementById("description");
 const extra = document.getElementById("extra");
 const forecastContainer = document.getElementById("forecast");
 
+const loading = document.getElementById("loading");
+const errorMsg = document.getElementById("error");
+const weatherContent = document.getElementById("weatherContent");
+
+// Event Listener
 searchBtn.addEventListener("click", () => {
     const city = cityInput.value.trim();
-    if (city !== "") {
-        getWeather(city);
-        getForecast(city);
-    }
+
+    if (city === "") return;
+
+    // Reset UI
+    errorMsg.style.display = "none";
+    weatherContent.style.display = "none";
+    loading.style.display = "block";
+
+    getWeather(city);
+    getForecast(city);
 });
 
+// Fetch current weather
 async function getWeather(city) {
     try {
         const res = await fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
         );
+
+        if (!res.ok) throw new Error("City not found");
+
         const data = await res.json();
 
         cityName.textContent = `${data.name}, ${data.sys.country}`;
         temperature.textContent = `${Math.round(data.main.temp)} °C`;
         description.textContent = data.weather[0].description;
         extra.textContent = `Humidity: ${data.main.humidity}% | Wind: ${data.wind.speed} km/h`;
+
+        loading.style.display = "none";
+        weatherContent.style.display = "block";
+
     } catch (error) {
-        alert("City not found!");
+        loading.style.display = "none";
+        errorMsg.style.display = "block";
     }
 }
 
+// Fetch 5-day forecast
 async function getForecast(city) {
     try {
         const res = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
         );
+
+        if (!res.ok) return;
+
         const data = await res.json();
 
         forecastContainer.innerHTML = "";
 
+        // Filter one forecast per day (12:00 PM)
         const dailyData = data.list.filter(item =>
             item.dt_txt.includes("12:00:00")
         );
@@ -60,7 +86,8 @@ async function getForecast(city) {
 
             forecastContainer.appendChild(card);
         });
+
     } catch (error) {
-        console.log(error);
+        console.log("Forecast error:", error);
     }
 }
