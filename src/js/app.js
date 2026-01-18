@@ -1,6 +1,6 @@
 const API_KEY = "ae331bd76f901600655e60a876af5eab";
 
-// DOM Elements
+
 const searchBtn = document.getElementById("searchBtn");
 const cityInput = document.getElementById("cityInput");
 
@@ -14,13 +14,13 @@ const loading = document.getElementById("loading");
 const errorMsg = document.getElementById("error");
 const weatherContent = document.getElementById("weatherContent");
 
-// Event Listener
+
 searchBtn.addEventListener("click", () => {
     const city = cityInput.value.trim();
 
     if (city === "") return;
 
-    // Reset UI
+    
     errorMsg.style.display = "none";
     weatherContent.style.display = "none";
     loading.style.display = "block";
@@ -29,7 +29,7 @@ searchBtn.addEventListener("click", () => {
     getForecast(city);
 });
 
-// Fetch current weather
+
 async function getWeather(city) {
     try {
         const res = await fetch(
@@ -54,7 +54,7 @@ async function getWeather(city) {
     }
 }
 
-// Fetch 5-day forecast
+
 async function getForecast(city) {
     try {
         const res = await fetch(
@@ -67,7 +67,7 @@ async function getForecast(city) {
 
         forecastContainer.innerHTML = "";
 
-        // Filter one forecast per day (12:00 PM)
+        
         const dailyData = data.list.filter(item =>
             item.dt_txt.includes("12:00:00")
         );
