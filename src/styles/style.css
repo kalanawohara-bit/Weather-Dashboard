@@ -49,3 +49,14 @@ header h1 {
     cursor: pointer;
     border-radius: 0 5px 5px 0;
 }
+.search-box button:hover {
+    background: #176f87;
+}
+
+.current-weather {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
