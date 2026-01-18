@@ -72,3 +72,12 @@ header h1 {
 .weather-info p {
     margin: 5px 0;
 }
+#temperature {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.forecast h2 {
+    margin-bottom: 15px;
+    text-align: center;
+}
