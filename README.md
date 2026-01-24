@@ -10,4 +10,5 @@ We use HTML.CSS AND JS to build the website.
 Github actions for CI
 automated deploy on main
 
+https://weather-dashboard-6pxv.vercel.app/
 
