@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  weather-dashboard:
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    
+    ports:
+      - "8080:8080"
+    
+    
+    container_name: weather-app-container
+    
+    
+    restart: unless-stopped

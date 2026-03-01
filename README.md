@@ -12,3 +12,15 @@ automated deploy on main
 
 https://weather-dashboard-6pxv.vercel.app/
 
+## Docker Containerization 
+
+This application has been containerized using Docker to ensure consistent deployment across all environments. It utilizes a lightweight, unprivileged Nginx Alpine image to serve the static files securely as a non-root user, following industry best practices.
+
+### Prerequisites
+* [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running on your machine.
+
+### How to Build and Run
+1. Open your terminal and navigate to the root directory of this project.
+2. Run the following command to build the image and start the container in detached mode:
+   ```bash
+   docker-compose up -d --build
